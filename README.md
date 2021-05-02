@@ -56,13 +56,13 @@ Run `rails-new-app` command and follow the step by step wizard
 
 ## Adding more configurations and tools:
 
-1 - Add a new step at `lib/rails-new-app/steps` (or modify an existing one)
-2 - Collect step config in the `config` hash
-3 - Update configuration details before confirmation
-4 - Add a new preocessor at `lib/rails-new-app/processors` (or modify an existing one)
-5 - Add a template to ONLY modify the gemfile at `lib/rails-new-app/templates`
-6 - Add another template to ONLY modify the code/configuration at `lib/rails-new-app/templates`
-7 - Update Runner to run the `update_gemfile` and `configure` methods
+1. Add a new step at `lib/rails-new-app/steps` (or modify an existing one)
+2. Collect step config in the `config` hash
+3. Update configuration details before confirmation
+4. Add a new preocessor at `lib/rails-new-app/processors` (or modify an existing one)
+5. Add a template to ONLY modify the gemfile at `lib/rails-new-app/templates`
+6. Add another template to ONLY modify the code/configuration at `lib/rails-new-app/templates`
+7. Update Runner to run the `update_gemfile` and `configure` methods
 
 * Steps 5 and 6 are split so we can run `bundle install` once.
 
