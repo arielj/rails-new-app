@@ -9,6 +9,16 @@ Run `gem install "rails-new-app"`
 
 Run `rails-new-app` command and follow the step by step wizard
 
+## Current configurations:
+- Rails version (validate and install)
+- Database: none / MySQL / PostgreSQL / SQLite
+- Tests: none / minitest / RSpec
+- CodeCoverage: none/Simplecov
+- TemplateEngine: None (just ERB) / Slim / HAML
+- RubyLinter: None / RuboCop / StandardRB
+- FormBuilder: None / Simple Form / Formtastic
+- JS Framework: None / ReactJS / VueJS / Angular / Elm / Stimulus
+
 ## TODOs and ideas:
 - improve GUI and UX
 - - toggle options using arrow keys?
