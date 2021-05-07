@@ -13,12 +13,15 @@ module RailsNewApp
     end
     
     def step_question
-      # TODO: inform the user that the version will be the latest path version
-      "Type the version of Rails you want to use:"
+      <<-QUESTION
+Type the version of Rails you want to use:
+! Notice that Rails will use the latest patch version for a given version !
+
+QUESTION
     end
 
     def after_valid
-      puts "Selected version is: #{@selection}"
+      puts "Selected version is: #{@selection}\n"
     end
   end
 end

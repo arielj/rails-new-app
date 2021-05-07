@@ -5,7 +5,7 @@ module RailsNewApp
     end
 
     def after_valid
-      puts "Your app is: #{@selection}"
+      puts "Your app is: #{@selection}\n"
     end
 
     def valid?(input)

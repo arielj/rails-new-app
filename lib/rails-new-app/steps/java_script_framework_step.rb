@@ -5,7 +5,7 @@ module RailsNewApp
     end
   
     def options
-      ["None", "ReactJS", "VueJS", "Angular", "Elm", "Stimulus"]
+      ["None (Default)", "ReactJS", "VueJS", "Angular", "Elm", "Stimulus"]
     end
   
     def lowercase_keys
@@ -17,13 +17,22 @@ module RailsNewApp
     end
   
     def after_valid
-      puts "Selected framework is: #{option}"
+      puts "Selected framework is: #{option}\n"
     end
   
     def return_value
       super.tap do |h|
         h[:in_rails_new] = rails_new_options.include?(h[:key])
       end
+    end
+
+    def self.default
+      {
+        option_number: 0,
+        name: "None (Default)",
+        key: "",
+        in_rails_new: false
+      }
     end
   end
 end

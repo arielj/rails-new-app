@@ -1,7 +1,7 @@
 module RailsNewApp
   class TestRunnerStep < ChoiceStep
     def options
-      ["None", "minitest", "RSpec"]
+      ["None", "Minitest (Default)", "RSpec"]
     end
 
     def lowercase_keys
@@ -13,7 +13,16 @@ module RailsNewApp
     end
 
     def after_valid
-      "Selected test runner is: #{option}"
+      "Selected test runner is: #{option}\n"
+    end
+
+    def self.default
+      {
+        option_number: 1,
+        name: "Minitest (Default)",
+        key: "minitest",
+        in_rails_new: true
+      }
     end
   end
 end

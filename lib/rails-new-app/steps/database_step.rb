@@ -5,7 +5,7 @@ module RailsNewApp
     end
 
     def options
-      ["None", "SQLite", "MySQL / MariaDB", "PostgreSQL"]
+      ["None", "SQLite (Default)", "MySQL / MariaDB", "PostgreSQL"]
     end
 
     def lowercase_keys
@@ -17,13 +17,22 @@ module RailsNewApp
     end
 
     def after_valid
-      puts "Selected database is: #{option}"
+      puts "Selected database is: #{option}\n"
     end
 
     def return_value
       super.tap do |h|
         h[:in_rails_new] = rails_new_options.include?(h[:key])
       end
+    end
+
+    def self.default
+      {
+        option_number: "1",
+        name: "SQLite (Default)",
+        key: "sqlite3",
+        in_rails_new: true
+      }
     end
   end
 end

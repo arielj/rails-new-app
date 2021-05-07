@@ -10,14 +10,15 @@ module RailsNewApp
 
     def ask
       puts step_question
+      puts ""
 
       options.each_with_index do |op, idx|
-        puts "#{idx + 1} ) #{op}"
+        puts "#{idx} ) #{op}"
       end
     end
     
     def clean_input(input)
-      input.to_i - 1
+      input.to_i
     end
     
     def valid?(input)

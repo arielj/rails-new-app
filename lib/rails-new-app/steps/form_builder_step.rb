@@ -5,7 +5,7 @@ module RailsNewApp
     end
 
     def options
-      ["None", "Simple Form", "Formtastic"]
+      ["None (Default)", "Simple Form", "Formtastic"]
     end
 
     def lowercase_keys
@@ -13,7 +13,15 @@ module RailsNewApp
     end
 
     def after_valid
-      puts "Selected Form builder is: #{option}"
+      puts "Selected Form builder is: #{option}\n"
+    end
+
+    def self.default
+      {
+        option_number: 0,
+        name: "None (Default)",
+        key: "",
+      }
     end
   end
 end

@@ -1,10 +1,18 @@
 module RailsNewApp
   class Step
-    def self.run
-      new.run
+    def self.run(config)
+      new.run(config)
     end
 
-    def run
+    def config
+      @config
+    end
+
+    def run(current_config)
+      @config = current_config
+ 
+      system("clear") if config[:navigation]
+ 
       ask
       read_and_validate
       after_valid
@@ -48,6 +56,10 @@ module RailsNewApp
     # process @selection to return a different value
     def return_value
       @selection
+    end
+
+    def self.default
+      ""
     end
   end
 end

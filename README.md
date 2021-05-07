@@ -7,13 +7,17 @@ Run `gem install "rails-new-app"`
 
 ## Usage:
 
-Run `rails-new-app` command and follow the step by step wizard
+Run `rails-new-app` command and follow the step by step wizard.
+
+### Alternative
+
+If, for any reason, the menu navigation does not work, run `rails-new-app navigation=false`.
 
 ## Current configurations:
 - Rails version (validate and install)
 - Database: none / MySQL / PostgreSQL / SQLite
-- Tests: none / minitest / RSpec
-- CodeCoverage: none/Simplecov
+- Tests: none / Minitest / RSpec
+- CodeCoverage: none / Simplecov
 - TemplateEngine: None (just ERB) / Slim / HAML
 - RubyLinter: None / RuboCop / StandardRB
 - FormBuilder: None / Simple Form / Formtastic
@@ -22,7 +26,6 @@ Run `rails-new-app` command and follow the step by step wizard
 ## TODOs and ideas:
 - improve GUI and UX
 - - toggle options using arrow keys?
-- - ability to go back to a previous state
 - - describe steps better
 - - add links to the different tools
 - add tests
