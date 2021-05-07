@@ -73,3 +73,6 @@ If, for any reason, the menu navigation does not work, run `rails-new-app naviga
 
 ### 0.0.1
 This is a really early Alpha version as a proof of concept.
+
+### 0.0.2
+Added navigation between menues.
