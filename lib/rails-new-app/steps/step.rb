@@ -61,5 +61,9 @@ module RailsNewApp
     def self.default
       ""
     end
+
+    def next_step
+      nil
+    end
   end
 end

@@ -4,17 +4,27 @@ require "readline"
 
 module RailsNewApp
   class Runner
-    SCREENS = {
-      "1" => [:app_name, AppNameStep],
-      "2" => [:rails_ver, RailsVersionStep],
-      "3" => [:database, DatabaseStep],
-      "4" => [:test_runner, TestRunnerStep],
-      "5" => [:code_coverage, CodeCoverageStep],
-      "6" => [:js_framework, JavaScriptFrameworkStep],
-      "7" => [:ruby_linter, RubyLinterStep],
-      "8" => [:template_engine, TemplateEngineStep],
-      "9" => [:form_builder, FormBuilderStep]
-    }.freeze
+    # use option: nil to hide the screen from the main menu
+    SCREENS = [
+      {option: "1", key: :app_name, class: AppNameStep},
+      {option: "2", key: :rails_ver, class: RailsVersionStep},
+      {option: "3", key: :database, class: DatabaseStep},
+      {option: "4", key: :test_runner, class: TestRunnerStep},
+      {option: "5", key: :js_framework, class: JavaScriptFrameworkStep},
+      {option: "6", key: :ruby_linter, class: RubyLinterStep},
+      {option: "7", key: :template_engine, class: TemplateEngineStep},
+      {option: "8", key: :form_builder, class: FormBuilderStep},
+      {option: nil, key: :code_coverage, class: CodeCoverageStep}
+    ].freeze
+
+    def get_screen(option)
+      case option.to_s
+      when /\A\d+\z/
+        SCREENS.find { |x| x[:option] == option.to_s }
+      else
+        SCREENS.find { |x| x[:key] == option.to_sym }
+      end
+    end
 
     def config
       @config
@@ -22,18 +32,9 @@ module RailsNewApp
   
     # entry point
     def run(navigation = true)
-      @config = {
-        navigation: navigation,
-        app_name: AppNameStep.default,
-        rails_ver: RailsVersionStep.default,
-        database: DatabaseStep.default,
-        test_runner: TestRunnerStep.default,
-        code_coverage: CodeCoverageStep.default,
-        js_framework: JavaScriptFrameworkStep.default,
-        ruby_linter: RubyLinterStep.default,
-        template_engine: TemplateEngineStep.default,
-        form_builder: FormBuilderStep.default
-      }
+      @config = {navigation: navigation}.tap do |h|
+        SCREENS.each { |s| h[s[:key]] = s[:class].default }
+      end
 
       intro
 
@@ -67,9 +68,11 @@ module RailsNewApp
     end
 
     def print_screens
-      SCREENS.each do |index, screen_meta|
-        screen = screen_meta[1].to_s.gsub("Step", "").gsub("RailsNewApp::", "")
-        puts "#{index} : #{screen}"
+      SCREENS.each do |s|
+        next if s[:option].nil?
+
+        screen_name = s[:class].to_s.gsub("Step", "").gsub("RailsNewApp::", "")
+        puts "#{s[:option]} : #{screen_name}"
       end
       puts "0 : Review and confirm"
       puts ""
@@ -89,16 +92,19 @@ module RailsNewApp
           clear
           print_screens
         else
-          screen_meta = SCREENS[option]
-          if screen_meta
-            key, screen = screen_meta
-            config[key] = screen.run(config)
-            clear
-            print_screens
-          else
-            puts "Invalid option, select a category:"
-          end
+          show_screen(option)
         end
+      end
+    end
+
+    def show_screen(option)
+      if (s = get_screen(option))
+        screen_obj = s[:class].new
+        config[s[:key]] = screen_obj.run(config)
+        clear
+        screen_obj.next_step ? show_screen(screen_obj.next_step) : print_screens
+      else
+        puts "Invalid option, select a category:"
       end
     end
   

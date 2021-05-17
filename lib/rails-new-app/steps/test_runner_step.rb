@@ -24,5 +24,9 @@ module RailsNewApp
         in_rails_new: true
       }
     end
+
+    def next_step
+      option == "None" ? nil : "code_coverage"
+    end
   end
 end
