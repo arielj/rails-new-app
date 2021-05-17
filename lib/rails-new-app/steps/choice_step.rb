@@ -12,8 +12,10 @@ module RailsNewApp
       puts step_question
       puts ""
 
+      current = config[self.class.key][:option_number]
       options.each_with_index do |op, idx|
-        puts "#{idx} ) #{op}"
+        is_current = (idx == current) ? " (current)" : ""
+        puts "#{idx} ) #{op}#{is_current}"
       end
     end
     

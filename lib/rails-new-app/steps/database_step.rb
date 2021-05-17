@@ -5,7 +5,7 @@ module RailsNewApp
     end
 
     def options
-      ["None", "SQLite (Default)", "MySQL / MariaDB", "PostgreSQL"]
+      ["None", "SQLite", "MySQL / MariaDB", "PostgreSQL"]
     end
 
     def lowercase_keys
@@ -29,7 +29,7 @@ module RailsNewApp
     def self.default
       {
         option_number: "1",
-        name: "SQLite (Default)",
+        name: "SQLite",
         key: "sqlite3",
         in_rails_new: true
       }

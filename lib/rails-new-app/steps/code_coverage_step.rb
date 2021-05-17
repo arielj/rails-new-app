@@ -11,7 +11,7 @@ module RailsNewApp
     end
 
     def options
-      ["None (Default)", "SimpleCov"]
+      ["None", "SimpleCov"]
     end
 
     def lowercase_keys

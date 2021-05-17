@@ -5,7 +5,7 @@ module RailsNewApp
     end
 
     def options
-      ["None (Default)", "Simple Form", "Formtastic"]
+      ["None", "Simple Form", "Formtastic"]
     end
 
     def lowercase_keys
@@ -19,7 +19,7 @@ module RailsNewApp
     def self.default
       {
         option_number: 0,
-        name: "None (Default)",
+        name: "None",
         key: "",
       }
     end

@@ -6,15 +6,15 @@ module RailsNewApp
   class Runner
     # use option: nil to hide the screen from the main menu
     SCREENS = [
-      {option: "1", key: :app_name, class: AppNameStep},
-      {option: "2", key: :rails_ver, class: RailsVersionStep},
-      {option: "3", key: :database, class: DatabaseStep},
-      {option: "4", key: :test_runner, class: TestRunnerStep},
-      {option: "5", key: :js_framework, class: JavaScriptFrameworkStep},
-      {option: "6", key: :ruby_linter, class: RubyLinterStep},
-      {option: "7", key: :template_engine, class: TemplateEngineStep},
-      {option: "8", key: :form_builder, class: FormBuilderStep},
-      {option: nil, key: :code_coverage, class: CodeCoverageStep}
+      {option: "1", class: AppNameStep},
+      {option: "2", class: RailsVersionStep},
+      {option: "3", class: DatabaseStep},
+      {option: "4", class: TestRunnerStep},
+      {option: "5", class: JavaScriptFrameworkStep},
+      {option: "6", class: RubyLinterStep},
+      {option: "7", class: TemplateEngineStep},
+      {option: "8", class: FormBuilderStep},
+      {option: nil, class: CodeCoverageStep}
     ].freeze
 
     def get_screen(option)
@@ -22,7 +22,7 @@ module RailsNewApp
       when /\A\d+\z/
         SCREENS.find { |x| x[:option] == option.to_s }
       else
-        SCREENS.find { |x| x[:key] == option.to_sym }
+        SCREENS.find { |x| x[:class].key == option.to_sym }
       end
     end
 
@@ -33,7 +33,7 @@ module RailsNewApp
     # entry point
     def run(navigation = true)
       @config = {navigation: navigation}.tap do |h|
-        SCREENS.each { |s| h[s[:key]] = s[:class].default }
+        SCREENS.each { |s| kls = s[:class]; h[kls.key] = kls.default }
       end
 
       intro
@@ -71,7 +71,7 @@ module RailsNewApp
       SCREENS.each do |s|
         next if s[:option].nil?
 
-        screen_name = s[:class].to_s.gsub("Step", "").gsub("RailsNewApp::", "")
+        screen_name = s[:class].clean_name
         puts "#{s[:option]} : #{screen_name}"
       end
       puts "0 : Review and confirm"
@@ -100,7 +100,7 @@ module RailsNewApp
     def show_screen(option)
       if (s = get_screen(option))
         screen_obj = s[:class].new
-        config[s[:key]] = screen_obj.run(config)
+        config[s[:class].key] = screen_obj.run(config)
         clear
         screen_obj.next_step ? show_screen(screen_obj.next_step) : print_screens
       else

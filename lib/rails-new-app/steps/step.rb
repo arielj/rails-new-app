@@ -1,5 +1,13 @@
 module RailsNewApp
   class Step
+    def self.clean_name
+      self.to_s.gsub("Step", "").gsub("RailsNewApp::", "")
+    end
+
+    def self.key
+      clean_name.underscore.to_sym
+    end
+
     def self.run(config)
       new.run(config)
     end

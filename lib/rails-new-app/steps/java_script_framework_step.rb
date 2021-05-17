@@ -5,7 +5,7 @@ module RailsNewApp
     end
   
     def options
-      ["None (Default)", "ReactJS", "VueJS", "Angular", "Elm", "Stimulus"]
+      ["None", "ReactJS", "VueJS", "Angular", "Elm", "Stimulus"]
     end
   
     def lowercase_keys
@@ -29,7 +29,7 @@ module RailsNewApp
     def self.default
       {
         option_number: 0,
-        name: "None (Default)",
+        name: "None",
         key: "",
         in_rails_new: false
       }

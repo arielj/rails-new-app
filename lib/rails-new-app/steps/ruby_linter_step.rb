@@ -5,7 +5,7 @@ module RailsNewApp
     end
 
     def options
-      ["None (Default)", "RuboCop", "StandardRB"]
+      ["None", "RuboCop", "StandardRB"]
     end
 
     def lowercase_keys
@@ -19,7 +19,7 @@ module RailsNewApp
     def self.default
       {
         option_number: 0,
-        name: "None (Default)",
+        name: "None",
         key: "",
       }
     end

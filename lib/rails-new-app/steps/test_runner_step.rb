@@ -1,7 +1,7 @@
 module RailsNewApp
   class TestRunnerStep < ChoiceStep
     def options
-      ["None", "Minitest (Default)", "RSpec"]
+      ["None", "Minitest", "RSpec"]
     end
 
     def lowercase_keys
@@ -19,14 +19,14 @@ module RailsNewApp
     def self.default
       {
         option_number: 1,
-        name: "Minitest (Default)",
+        name: "Minitest",
         key: "minitest",
         in_rails_new: true
       }
     end
 
     def next_step
-      option == "None" ? nil : "code_coverage"
+      option == "None" ? nil : :code_coverage
     end
   end
 end

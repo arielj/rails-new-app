@@ -1,3 +1,4 @@
+require_relative "rails-new-app/string_underscore"
 require_relative "rails-new-app/version"
 require_relative "rails-new-app/runner"
 
