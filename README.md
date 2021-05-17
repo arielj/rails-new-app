@@ -16,8 +16,10 @@ If, for any reason, the menu navigation does not work, run `rails-new-app naviga
 ## Current configurations:
 - Rails version (validate and install)
 - Database: none / MySQL / PostgreSQL / SQLite
-- Tests: none / Minitest / RSpec
-- CodeCoverage: none / Simplecov
+- Tests:
+- - runner: none / Minitest / RSpec
+- - CodeCoverage: none / Simplecov
+- - Factories: none / FactoryBot
 - TemplateEngine: None (just ERB) / Slim / HAML
 - RubyLinter: None / RuboCop / StandardRB
 - FormBuilder: None / Simple Form / Formtastic
@@ -42,7 +44,6 @@ If, for any reason, the menu navigation does not work, run `rails-new-app naviga
 - type of app: standard/minimal/api
 - CI config? github actions / travis / circleci / bitbucket / gitlab / others
 - js linter? None/ESlint/StandardJS
-- factory_bot?
 - faker?
 - devise?
 - carrierwave/paperclip/dragonfly?

@@ -1,11 +1,14 @@
 module RailsNewApp
   class RailsVersionStep < Step
     def valid?(ver)
-      if ver =~ /\A[56].\d.\d\z/
-        # puts "Validating against Rubygems..."
+      if ver =~ /\A[56].\d\z/
         # uncomment this to validate the input against RubyGems
-        # `gem list -r -e -a rails | grep '#{ver}'` != false
-        true
+        puts "Validating against Rubygems..."
+        if `gem list -r -e -a rails | grep '[\( ]#{ver}\.'` != ""
+          true
+        else
+          puts "Invalid Rails version, type the version you want to use:"
+        end
       else
         puts "Invalid Rails version, type the version you want to use:"
         false
@@ -14,7 +17,7 @@ module RailsNewApp
     
     def step_question
       <<-QUESTION
-Type the version of Rails you want to use:
+Type the version of Rails you want to use (MAJOR.MINOR):
 ! Notice that Rails will use the latest patch version for a given version !
 
 QUESTION
