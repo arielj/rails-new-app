@@ -14,7 +14,8 @@ module RailsNewApp
       {option: "6", class: RubyLinterStep},
       {option: "7", class: TemplateEngineStep},
       {option: "8", class: FormBuilderStep},
-      {option: nil, class: CodeCoverageStep}
+      {option: nil, class: CodeCoverageStep},
+      {option: nil, class: TestFactoryStep}
     ].freeze
 
     def get_screen(option)
@@ -110,7 +111,7 @@ module RailsNewApp
   
     def steps
       config[:app_name] = AppNameStep.run(config)
-      config[:rails_ver] = RailsVersionStep.run(config)
+      config[:rails_version] = RailsVersionStep.run(config)
       config[:database] = DatabaseStep.run(config)
       config[:test_runner] = TestRunnerStep.run(config)
   
@@ -131,7 +132,7 @@ module RailsNewApp
   
     def review_and_confirm
       clear
-      rails_ver = config[:rails_ver]
+      rails_ver = config[:rails_version]
       rails_ver = "Using latest installed Rails version" if rails_ver == ""
 
       puts <<-REVIEW
@@ -143,7 +144,8 @@ Rails version: #{rails_ver}
 Database: #{config[:database]}
 Test runner: #{config[:test_runner]}
 Code coverage: #{config[:code_coverage]}
-JS framework: #{config[:js_framework]}
+Test factories: #{config[:test_factory]}
+JS framework: #{config[:java_script_framework]}
 Ruby Linter: #{config[:ruby_linter]}
 Template engine: #{config[:template_engine]}
 Form builder: #{config[:form_builder]}
@@ -173,16 +175,16 @@ WARNING
     end
   
     def install_rails
-      return if config[:rails_ver] == ""
+      return if config[:rails_version] == ""
       # install the require rails version if needed
       puts "Verifying and installing Rails #{config[:rails_ven]}"
-      `gem install rails -v#{config[:rails_ver]}`
+      `gem install rails -v#{config[:rails_version]}`
     end
   
     def rails_new
       puts "Running Rails new"
       command = build_rails_new_command
-      # puts command
+      puts command
       system(command)
     end
   
@@ -202,6 +204,7 @@ WARNING
         #configure each gem
         TestRunnerProcessor.configure(config)
         CodeCoverageProcessor.configure(config)
+        TestFactoryProcessor.configure(config)
         TemplateEngineProcessor.configure(config)
         FormBuilderProcessor.configure(config)
         RubyLinterProcessor.configure(config)
@@ -222,7 +225,7 @@ WARNING
     def build_rails_new_command
       ["rails"].tap do |ar|
         # use specific Rails version
-        ar << "_#{config[:rails_ver]}_" if config[:rails_ver] != ""
+        ar << "_#{config[:rails_version]}_" if config[:rails_version] != ""
         # new command
         ar << "new"
         # use desired database
@@ -230,7 +233,7 @@ WARNING
         # ignore test if not minitest
         ar << "--skip_test" if config[:test_runner][:key] != "minitest"
         # use desired js framework
-        ar << "--webpack=#{config[:js_framework][:key]}" if config[:js_framework][:in_rails_new]
+        ar << "--webpack=#{config[:java_script_framework][:key]}" if config[:java_script_framework][:in_rails_new]
         # ar << "--skip-javascript"
         # add app name
         ar << config[:app_name]

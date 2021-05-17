@@ -23,5 +23,9 @@ QUESTION
     def after_valid
       puts "Selected version is: #{@selection}\n"
     end
+
+    def self.default
+      ""
+    end
   end
 end

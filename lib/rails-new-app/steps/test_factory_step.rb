@@ -1,5 +1,5 @@
 module RailsNewApp
-  class CodeCoverageStep < ChoiceStep
+  class TestFactoryStep < ChoiceStep
     def step_question
       warning =
         if config[:test_runner][:key] == ""
@@ -7,19 +7,19 @@ module RailsNewApp
         else
           ""
         end
-      "#{warning}Type the option number of the code coverage tool to use:"
+      "#{warning}Type the option number of the test factories tool to use:"
     end
 
     def options
-      ["None", "SimpleCov"]
+      ["None", "FactoryBot"]
     end
 
     def lowercase_keys
-      ["", "simplecov"]
+      ["", "factory_bot"]
     end
 
     def after_valid
-      puts "Selected code coverage tool is: #{option}\n"
+      puts "Selected test factories tool is: #{option}\n"
     end
 
     def self.default
@@ -28,10 +28,6 @@ module RailsNewApp
         name: "None (Default)",
         key: "",
       }
-    end
-
-    def next_step
-      :test_factory
     end
   end
 end

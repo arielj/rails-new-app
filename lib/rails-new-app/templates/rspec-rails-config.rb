@@ -1,7 +1,6 @@
 generate "rspec:install"
 
 # Create the spec folders for RSpec
-run "mkdir spec"
 run "mkdir spec/models"
 run "mkdir spec/controllers"
 run "mkdir spec/system"
