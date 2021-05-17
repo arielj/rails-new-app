@@ -1,5 +1,5 @@
 # rails-new-app
-Command-line tool to assist the creation of new Rails 5 and 6 apps
+Command-line tool to assist in the creation of new Rails 5 and 6 apps
 
 ## Installation:
 
@@ -75,4 +75,4 @@ If, for any reason, the menu navigation does not work, run `rails-new-app naviga
 This is a really early Alpha version as a proof of concept.
 
 ### 0.0.2
-Added navigation between menues.
+Added navigation between menus.
