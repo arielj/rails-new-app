@@ -14,6 +14,7 @@ module RailsNewApp
       {option: "6", class: RubyLinterStep},
       {option: "7", class: TemplateEngineStep},
       {option: "8", class: FormBuilderStep},
+      {option: "9", class: PaginationStep},
       {option: nil, class: CodeCoverageStep},
       {option: nil, class: TestFactoryStep},
       {option: nil, class: TestFakeDataStep}
@@ -151,6 +152,7 @@ JS framework: #{config[:java_script_framework]}
 Ruby Linter: #{config[:ruby_linter]}
 Template engine: #{config[:template_engine]}
 Form builder: #{config[:form_builder]}
+Pagination: #{config[:pagination]}
 
 REVIEW
 
@@ -201,6 +203,7 @@ WARNING
         TemplateEngineProcessor.update_gemfile(config)
         FormBuilderProcessor.update_gemfile(config)
         RubyLinterProcessor.update_gemfile(config)
+        PaginationProcessor.update_gemfile(config)
 
         # install gems
         system("bundle install")
@@ -209,9 +212,9 @@ WARNING
         TestRunnerProcessor.configure(config)
         CodeCoverageProcessor.configure(config)
         TestFactoryProcessor.configure(config)
-        TemplateEngineProcessor.configure(config)
         FormBuilderProcessor.configure(config)
         RubyLinterProcessor.configure(config)
+        PaginationProcessor.configure(config)
       end
     end
   

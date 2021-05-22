@@ -11,9 +11,11 @@ module RailsNewApp
     end
 
     def update_gemfile(config)
+      raise "Processor must redefine this method"
     end
 
     def configure(config)
+      raise "Processor must redefine this method"
     end
 
     def apply_template(template)

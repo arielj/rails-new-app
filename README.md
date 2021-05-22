@@ -44,7 +44,6 @@ If, for any reason, the menu navigation does not work, run `rails-new-app naviga
 - type of app: standard/minimal/api
 - CI config? github actions / travis / circleci / bitbucket / gitlab / others
 - js linter? None/ESlint/StandardJS
-- faker?
 - devise?
 - carrierwave/paperclip/dragonfly?
 - exception_notification / airbreak / other reporting tools
@@ -55,8 +54,8 @@ If, for any reason, the menu navigation does not work, run `rails-new-app naviga
 - CSS framework? bootstrap/tailwind/material/spectre/bulma (this affects the form builders processor)
 - add basic docker config?
 - admin gems? ActiveAdmin/RailsAdmin/Trestle/others
-- pagination? pagy/kaminari/will_paginate
 - pre-commit hooks? overcommit
+- cancancan/pundit ?
 
 ## Adding more configurations and tools:
 

@@ -2,8 +2,12 @@ module RailsNewApp
   class RubyLinterProcessor < Processor
     def update_gemfile(config)
       case config[:ruby_linter][:key]
-      when "rubocop" then apply_template "rubocop-#{config[:test_runner][:key]}-gemfile"
-      when "standardrb" then apply_template "standardrb-#{config[:test_runner][:key]}-gemfile"
+      when "rubocop", "standardrb"
+        apply_template "#{config[:ruby_linter][:key]}-gemfile"
+        case config[:test_runner][:key]
+        when "minitest" then apply_template "rubocop-minitest-gemfile"
+        when "rspec" then apply_template "rubocop-rspec-gemfile"
+        end
       end
     end
 
