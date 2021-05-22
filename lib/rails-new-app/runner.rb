@@ -196,25 +196,29 @@ module RailsNewApp
       # cd into rails app
       Dir.chdir(config[:app_name]) do
         # add different gems
-        TestRunnerProcessor.update_gemfile(config)
-        CodeCoverageProcessor.update_gemfile(config)
-        TestFactoryProcessor.update_gemfile(config)
-        TestFakeDataProcessor.update_gemfile(config)
-        TemplateEngineProcessor.update_gemfile(config)
-        FormBuilderProcessor.update_gemfile(config)
-        RubyLinterProcessor.update_gemfile(config)
-        PaginationProcessor.update_gemfile(config)
+        [
+          TestRunnerProcessor,
+          CodeCoverageProcessor,
+          TestFactoryProcessor,
+          TestFakeDataProcessor,
+          TemplateEngineProcessor,
+          FormBuilderProcessor,
+          RubyLinterProcessor,
+          PaginationProcessor
+        ].each { |p| p.update_gemfile(config) }
 
         # install gems
         system("bundle install")
 
         # configure each gem
-        TestRunnerProcessor.configure(config)
-        CodeCoverageProcessor.configure(config)
-        TestFactoryProcessor.configure(config)
-        FormBuilderProcessor.configure(config)
-        RubyLinterProcessor.configure(config)
-        PaginationProcessor.configure(config)
+        [
+          TestRunnerProcessor,
+          CodeCoverageProcessor,
+          TestFactoryProcessor,
+          FormBuilderProcessor,
+          RubyLinterProcessor,
+          PaginationProcessor
+        ].each { |p| p.configure(config) }
       end
     end
 
