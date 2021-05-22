@@ -7,7 +7,7 @@ Gem::Specification.new do |s|
   s.version = RailsNewApp::VERSION
   s.authors = ["Ariel Juodziukynas"]
   s.email = ["arieljuod@gmail.com"]
-  s.license = 'MIT'
+  s.license = "MIT"
 
   s.summary = "Command-line tool to assist the creation of new Rails apps"
   s.homepage = "https://github.com/arielj/rails-new-app"

@@ -9,7 +9,7 @@ module RailsNewApp
     end
 
     def valid?(input)
-      if input.strip =~ /\A[a-z_]+\z/i
+      if /\A[a-z_]+\z/i.match?(input.strip)
         true
       else
         puts "Invalid app name"

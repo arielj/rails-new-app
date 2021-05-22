@@ -14,15 +14,15 @@ module RailsNewApp
 
       current = config[self.class.key][:option_number]
       options.each_with_index do |op, idx|
-        is_current = (idx == current) ? " (current)" : ""
+        is_current = idx == current ? " (current)" : ""
         puts "#{idx} ) #{op}#{is_current}"
       end
     end
-    
+
     def clean_input(input)
       input.to_i
     end
-    
+
     def valid?(input)
       if options[input]
         true

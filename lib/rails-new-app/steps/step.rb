@@ -1,7 +1,7 @@
 module RailsNewApp
   class Step
     def self.clean_name
-      self.to_s.gsub("Step", "").gsub("RailsNewApp::", "")
+      to_s.gsub("Step", "").gsub("RailsNewApp::", "")
     end
 
     def self.key
@@ -12,15 +12,13 @@ module RailsNewApp
       new.run(config)
     end
 
-    def config
-      @config
-    end
+    attr_reader :config
 
     def run(current_config)
       @config = current_config
- 
+
       system("clear") if config[:navigation]
- 
+
       ask
       read_and_validate
       after_valid

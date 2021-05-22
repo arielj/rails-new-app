@@ -20,7 +20,7 @@ module RailsNewApp
       {
         option_number: 0,
         name: "None",
-        key: "",
+        key: ""
       }
     end
   end

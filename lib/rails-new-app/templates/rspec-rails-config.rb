@@ -12,11 +12,12 @@ run "mkdir spec/mailers"
 run "mkdir spec/factories"
 
 # Add `rails spec` task to run tests
-inject_into_file "Rakefile", before: "Rails.application.load_tasks\n" do <<-'RUBY'
-begin
-  require "rspec/core/rake_task"
-  RSpec::Core::RakeTask.new(:spec)
-rescue LoadError
-end
-RUBY
+inject_into_file "Rakefile", before: "Rails.application.load_tasks\n" do
+  <<~'RUBY'
+    begin
+      require "rspec/core/rake_task"
+      RSpec::Core::RakeTask.new(:spec)
+    rescue LoadError
+    end
+  RUBY
 end

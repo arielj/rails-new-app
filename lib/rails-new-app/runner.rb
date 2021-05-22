@@ -29,14 +29,15 @@ module RailsNewApp
       end
     end
 
-    def config
-      @config
-    end
-  
+    attr_reader :config
+
     # entry point
     def run(navigation = true)
       @config = {navigation: navigation}.tap do |h|
-        SCREENS.each { |s| kls = s[:class]; h[kls.key] = kls.default }
+        SCREENS.each do |s|
+          kls = s[:class]
+          h[kls.key] = kls.default
+        end
       end
 
       intro
@@ -64,7 +65,7 @@ module RailsNewApp
     def clear
       system("clear")
     end
-  
+
     def intro
       clear
       puts "Let's create a new Rails app step by step"
@@ -81,7 +82,6 @@ module RailsNewApp
       puts ""
       puts "Type the number of the menu and press enter:"
     end
-
 
     def show_menu
       print_screens
@@ -110,13 +110,13 @@ module RailsNewApp
         puts "Invalid option, select a category:"
       end
     end
-  
+
     def steps
       config[:app_name] = AppNameStep.run(config)
       config[:rails_version] = RailsVersionStep.run(config)
       config[:database] = DatabaseStep.run(config)
       config[:test_runner] = TestRunnerStep.run(config)
-  
+
       # ignore test coverage if no tests
       config[:code_coverage] =
         if config[:test_runner][:key] == ""
@@ -125,73 +125,73 @@ module RailsNewApp
         else
           CodeCoverageStep.run(config)
         end
-  
+
       config[:js_framework] = JavaScriptFrameworkStep.run(config)
       config[:ruby_linter] = RubyLinterStep.run(config)
       config[:template_engine] = TemplateEngineStep.run(config)
       config[:form_builder] = FormBuilderStep.run(config)
     end
-  
+
     def review_and_confirm
       clear
       rails_ver = config[:rails_version]
       rails_ver = "Using latest installed Rails version" if rails_ver == ""
 
-      puts <<-REVIEW
-===== New Rails app config =====
-
-App name: #{config[:app_name]}
-Ruby version: #{RUBY_VERSION}
-Rails version: #{rails_ver}
-Database: #{config[:database]}
-Test runner: #{config[:test_runner]}
-Code coverage: #{config[:code_coverage]}
-Test factories: #{config[:test_factory]}
-Test fake data: #{config[:test_fake_data]}
-JS framework: #{config[:java_script_framework]}
-Ruby Linter: #{config[:ruby_linter]}
-Template engine: #{config[:template_engine]}
-Form builder: #{config[:form_builder]}
-Pagination: #{config[:pagination]}
-
-REVIEW
+      puts <<~REVIEW
+        ===== New Rails app config =====
+        
+        App name: #{config[:app_name]}
+        Ruby version: #{RUBY_VERSION}
+        Rails version: #{rails_ver}
+        Database: #{config[:database]}
+        Test runner: #{config[:test_runner]}
+        Code coverage: #{config[:code_coverage]}
+        Test factories: #{config[:test_factory]}
+        Test fake data: #{config[:test_fake_data]}
+        JS framework: #{config[:java_script_framework]}
+        Ruby Linter: #{config[:ruby_linter]}
+        Template engine: #{config[:template_engine]}
+        Form builder: #{config[:form_builder]}
+        Pagination: #{config[:pagination]}
+        
+      REVIEW
 
       message = "Type 'Y(es)' to confirm, 'B(ack) to go back, or 'N(o)' to abort"
       if config[:app_name] == ""
-        puts <<-WARNING
-=====================================
-         App name is required        
-=====================================
-
-WARNING
+        puts <<~WARNING
+          =====================================
+                   App name is required        
+          =====================================
+          
+        WARNING
         message.gsub!("Type 'Y(es)' to confirm, ", "Type ")
       end
 
       loop do
         puts message
         answer = gets.chomp.strip
-        return :yes if answer =~ /\A*Y(es)?\z/i
-        return :back if answer =~ /\A*B(ack)?\z/i
-        return :no if answer =~ /\A*N(o)?\z/i
+        return :yes if /\A*Y(es)?\z/i.match?(answer)
+        return :back if /\A*B(ack)?\z/i.match?(answer)
+        return :no if /\A*N(o)?\z/i.match?(answer)
 
         puts "Invalid option."
       end
     end
-  
+
     def install_rails
       return if config[:rails_version] == ""
       # install the require rails version if needed
       puts "Verifying and installing Rails #{config[:rails_ven]}"
       `gem install rails -v#{config[:rails_version]}`
     end
-  
+
     def rails_new
       puts "Running Rails new"
       command = build_rails_new_command
       puts command
       system(command)
     end
-  
+
     def process_config
       # cd into rails app
       Dir.chdir(config[:app_name]) do
@@ -208,7 +208,7 @@ WARNING
         # install gems
         system("bundle install")
 
-        #configure each gem
+        # configure each gem
         TestRunnerProcessor.configure(config)
         CodeCoverageProcessor.configure(config)
         TestFactoryProcessor.configure(config)
@@ -217,17 +217,17 @@ WARNING
         PaginationProcessor.configure(config)
       end
     end
-  
+
     def end_message
       puts "Your new Rails app is ready!"
     end
-  
+
     def aborted_message
       puts "Aborted"
     end
-  
+
     private
-  
+
     # final step and creation
     def build_rails_new_command
       ["rails"].tap do |ar|

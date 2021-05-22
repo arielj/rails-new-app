@@ -1,1 +1,1 @@
-gem 'pagy'
+gem "pagy"

@@ -1,1 +1,1 @@
-gem 'kaminari'
+gem "kaminari"
