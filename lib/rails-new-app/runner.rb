@@ -117,19 +117,17 @@ module RailsNewApp
       config[:database] = DatabaseStep.run(config)
       config[:test_runner] = TestRunnerStep.run(config)
 
-      # ignore test coverage if no tests
-      config[:code_coverage] =
-        if config[:test_runner][:key] == ""
-          puts "Skipping Simplecov config, no test runner"
-          {key: ""}
-        else
-          CodeCoverageStep.run(config)
-        end
+      if config[:test_runner][:key] != ""
+        config[:code_coverage] = CodeCoverageStep.run(config)
+        config[:test_factory] = TestFactoryStep.run(config)
+        config[:test_fake_data] = TestFakeDataStep.run(config)
+      end
 
       config[:js_framework] = JavaScriptFrameworkStep.run(config)
       config[:ruby_linter] = RubyLinterStep.run(config)
       config[:template_engine] = TemplateEngineStep.run(config)
       config[:form_builder] = FormBuilderStep.run(config)
+      config[:pagination] = PaginationStep.run(config)
     end
 
     def review_and_confirm
@@ -219,7 +217,14 @@ module RailsNewApp
           RubyLinterProcessor,
           PaginationProcessor
         ].each { |p| p.configure(config) }
+
+        after_create
       end
+    end
+
+    def after_create
+      fix_code_style
+      initial_commit
     end
 
     def end_message
@@ -249,6 +254,18 @@ module RailsNewApp
         # add app name
         ar << config[:app_name]
       end.join(" ")
+    end
+
+    def fix_code_style
+      case config[:ruby_linter][:key]
+      when "rubocop" then system("rubocop -A")
+      when "standardrb" then system("standardrb --fix")
+      end
+    end
+
+    def initial_commit
+      system("git add .")
+      system("git commit -a -m 'Initial commit'")
     end
   end
 end
