@@ -15,7 +15,8 @@ module RailsNewApp
       {option: "7", class: TemplateEngineStep},
       {option: "8", class: FormBuilderStep},
       {option: nil, class: CodeCoverageStep},
-      {option: nil, class: TestFactoryStep}
+      {option: nil, class: TestFactoryStep},
+      {option: nil, class: TestFakeDataStep}
     ].freeze
 
     def get_screen(option)
@@ -145,6 +146,7 @@ Database: #{config[:database]}
 Test runner: #{config[:test_runner]}
 Code coverage: #{config[:code_coverage]}
 Test factories: #{config[:test_factory]}
+Test fake data: #{config[:test_fake_data]}
 JS framework: #{config[:java_script_framework]}
 Ruby Linter: #{config[:ruby_linter]}
 Template engine: #{config[:template_engine]}
@@ -194,6 +196,8 @@ WARNING
         # add different gems
         TestRunnerProcessor.update_gemfile(config)
         CodeCoverageProcessor.update_gemfile(config)
+        TestFactoryProcessor.update_gemfile(config)
+        TestFakeDataProcessor.update_gemfile(config)
         TemplateEngineProcessor.update_gemfile(config)
         FormBuilderProcessor.update_gemfile(config)
         RubyLinterProcessor.update_gemfile(config)

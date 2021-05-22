@@ -1,6 +1,6 @@
 module RailsNewApp
   class TestFactoryProcessor < Processor
-    def udpate_gemfile(config)
+    def update_gemfile(config)
       return if config[:test_runner][:key] == ""
 
       case config[:test_factory][:key]

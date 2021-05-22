@@ -1,6 +1,6 @@
 module RailsNewApp
   class CodeCoverageProcessor < Processor
-    def udpate_gemfile(config)
+    def update_gemfile(config)
       return if config[:test_runner][:key] == ""
 
       case config[:code_coverage][:key]
