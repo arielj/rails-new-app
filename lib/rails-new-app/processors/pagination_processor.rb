@@ -4,7 +4,7 @@ module RailsNewApp
       case config[:pagination][:key]
       when "pagy" then apply_template "pagy-gemfile"
       when "kaminari" then apply_template "kaminari-gemfile"
-      when "will_paginate" then apply_template "kaminari-gemfile"
+      when "will_paginate" then apply_template "will_paginate-gemfile"
       end
     end
 
@@ -12,8 +12,6 @@ module RailsNewApp
       puts "Processing Pagination config"
       case config[:pagination][:key]
       when "pagy" then apply_template "pagy-config"
-      when "kaminari" then apply_template "kaminari-config"
-      when "will_paginate" then apply_template "kaminari-config"
       end
     end
   end
