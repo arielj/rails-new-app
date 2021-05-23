@@ -20,10 +20,12 @@ If, for any reason, the menu navigation does not work, run `rails-new-app naviga
 - - runner: none / Minitest / RSpec
 - - CodeCoverage: none / Simplecov
 - - Factories: none / FactoryBot
+- - Fake data: none / Faker
 - TemplateEngine: None (just ERB) / Slim / HAML
 - RubyLinter: None / RuboCop / StandardRB
 - FormBuilder: None / Simple Form / Formtastic
 - JS Framework: None / ReactJS / VueJS / Angular / Elm / Stimulus
+- Pagination: None / Pagy / Kaminari / WillPaginate
 
 ## TODOs and ideas:
 - improve GUI and UX
@@ -35,7 +37,6 @@ If, for any reason, the menu navigation does not work, run `rails-new-app naviga
 - support `rails new` flags configuration
 - research requirements
 - improve validations (check rails version, ruby version, if gems are compatible with rails, etc)
-- make sure the `rails-new-app` command is available globally
 - show the user the current Ruby version
 - support a `rails-new-app-defaults` file at the HOME dir to set default options if empty answers
 
@@ -76,3 +77,10 @@ This is a really early Alpha version as a proof of concept.
 
 ### 0.0.2
 Added navigation between menus.
+
+### 0.0.3
+- Added `next_step` to configure related tools without going back to menu
+- Apply linter fixes after creation
+- Add a git initial commit
+- Added new tools: Faker, pagination gems
+- Bug fixing
