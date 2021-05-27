@@ -15,17 +15,19 @@ If, for any reason, the menu navigation does not work, run `rails-new-app naviga
 
 ## Current configurations:
 - Rails version (validate and install)
-- Database: none / MySQL / PostgreSQL / SQLite
+- Database: MySQL / PostgreSQL / SQLite
 - Tests:
 - - runner: none / Minitest / RSpec
 - - CodeCoverage: none / Simplecov
 - - Factories: none / FactoryBot
 - - Fake data: none / Faker
 - TemplateEngine: None (just ERB) / Slim / HAML
-- RubyLinter: None / RuboCop / StandardRB
 - FormBuilder: None / Simple Form / Formtastic
-- JS Framework: None / ReactJS / VueJS / Angular / Elm / Stimulus
 - Pagination: None / Pagy / Kaminari / WillPaginate
+- JS Framework: None / ReactJS / VueJS / Angular / Elm / Stimulus
+- Authorization: None / Pundit / CanCanCan
+- Authentication: None / Devise
+- RubyLinter: None / RuboCop / StandardRB
 
 ## TODOs and ideas:
 - improve GUI and UX
@@ -41,22 +43,20 @@ If, for any reason, the menu navigation does not work, run `rails-new-app naviga
 - support a `rails-new-app-defaults` file at the HOME dir to set default options if empty answers
 
 #### Ideas for other tools:
-- support other databases like MongoDB that require more config
-- type of app: standard/minimal/api
-- CI config? github actions / travis / circleci / bitbucket / gitlab / others
-- js linter? None/ESlint/StandardJS
-- devise?
-- carrierwave/paperclip/dragonfly?
-- exception_notification / airbreak / other reporting tools
 - dotenv/figaro
-- redis?
-- memcached/dalli/other?
 - resque/sideqik/suckerpunch/other?
 - CSS framework? bootstrap/tailwind/material/spectre/bulma (this affects the form builders processor)
+- CI config? github actions / travis / circleci / bitbucket / gitlab / others
+- carrierwave/paperclip/dragonfly?
+- js linter? None/ESlint/StandardJS
+- exception_notification / airbreak / other reporting tools
+- redis?
+- memcached/dalli/other?
 - add basic docker config?
-- admin gems? ActiveAdmin/RailsAdmin/Trestle/others
 - pre-commit hooks? overcommit
-- cancancan/pundit ?
+- admin gems? ActiveAdmin/RailsAdmin/Trestle/others
+- type of app: standard/minimal/api
+- support other databases like MongoDB that require more config
 
 ## Adding more configurations and tools:
 

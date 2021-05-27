@@ -6,24 +6,27 @@ module RailsNewApp
   class Runner
     # use option: nil to hide the screen from the main menu
     SCREENS = [
-      {option: "1", class: AppNameStep},
-      {option: "2", class: RailsVersionStep},
-      {option: "3", class: DatabaseStep},
-      {option: "4", class: TestRunnerStep},
-      {option: "5", class: JavaScriptFrameworkStep},
-      {option: "6", class: RubyLinterStep},
-      {option: "7", class: TemplateEngineStep},
-      {option: "8", class: FormBuilderStep},
-      {option: "9", class: PaginationStep},
+      {option: "1", page: 1, class: AppNameStep},
+      {option: "2", page: 1, class: RailsVersionStep},
+      {option: "3", page: 1, class: DatabaseStep},
+      {option: "4", page: 1, class: TestRunnerStep},
+      {option: "5", page: 1, class: JavaScriptFrameworkStep},
+      {option: "6", page: 1, class: RubyLinterStep},
+      {option: "7", page: 1, class: TemplateEngineStep},
+      {option: "8", page: 1, class: FormBuilderStep},
+      {option: "9", page: 1, class: PaginationStep},
+      {option: "1", page: 2, class: AuthStep},
       {option: nil, class: CodeCoverageStep},
       {option: nil, class: TestFactoryStep},
-      {option: nil, class: TestFakeDataStep}
+      {option: nil, class: TestFakeDataStep},
+      {option: nil, class: AuthenticationStep},
+      {option: nil, class: AuthorizationStep}
     ].freeze
 
     def get_screen(option)
       case option.to_s
       when /\A\d+\z/
-        SCREENS.find { |x| x[:option] == option.to_s }
+        SCREENS.find { |x| x[:option] == option.to_s && x[:page] == @current_page }
       else
         SCREENS.find { |x| x[:class].key == option.to_sym }
       end
@@ -33,6 +36,7 @@ module RailsNewApp
 
     # entry point
     def run(navigation = true)
+      @current_page = 1
       @config = {navigation: navigation}.tap do |h|
         SCREENS.each do |s|
           kls = s[:class]
@@ -74,10 +78,14 @@ module RailsNewApp
     def print_screens
       SCREENS.each do |s|
         next if s[:option].nil?
+        next if s[:page] != @current_page
 
         screen_name = s[:class].clean_name
         puts "#{s[:option]} : #{screen_name}"
       end
+      puts ""
+      puts "n : Next menu" if @current_page == 1
+      puts "p : Previous menu" if @current_page == 2
       puts "0 : Review and confirm"
       puts ""
       puts "Type the number of the menu and press enter:"
@@ -87,11 +95,20 @@ module RailsNewApp
       print_screens
       loop do
         option = gets.chomp.strip
-        if option == "0"
+        case option
+        when "0"
           case review_and_confirm
           when :yes then return true
           when :no then return false
           end
+          clear
+          print_screens
+        when "n"
+          @current_page += 1
+          clear
+          print_screens
+        when "p"
+          @current_page -= 1
           clear
           print_screens
         else
@@ -151,6 +168,8 @@ module RailsNewApp
         Template engine: #{config[:template_engine]}
         Form builder: #{config[:form_builder]}
         Pagination: #{config[:pagination]}
+        Authorization: #{config[:authorization]}
+        Authentication: #{config[:authentication]}
         
       REVIEW
 
@@ -202,7 +221,9 @@ module RailsNewApp
           TemplateEngineProcessor,
           FormBuilderProcessor,
           RubyLinterProcessor,
-          PaginationProcessor
+          PaginationProcessor,
+          AuthorizationProcessor,
+          AuthentiacationProcessor
         ].each { |p| p.update_gemfile(config) }
 
         # install gems
@@ -215,7 +236,9 @@ module RailsNewApp
           TestFactoryProcessor,
           FormBuilderProcessor,
           RubyLinterProcessor,
-          PaginationProcessor
+          PaginationProcessor,
+          AuthorizationProcessor,
+          AuthentiacationProcessor
         ].each { |p| p.configure(config) }
 
         after_create

@@ -12,11 +12,14 @@ module RailsNewApp
       puts step_question
       puts ""
 
-      current = config[self.class.key][:option_number]
+      current = config[self.class.key] ? config[self.class.key][:option_number] : nil
       options.each_with_index do |op, idx|
-        is_current = idx == current ? " (current)" : ""
-        puts "#{idx} ) #{op}#{is_current}"
+        aux = idx + 1
+        is_current = aux == current ? " (current)" : ""
+        puts "#{aux} ) #{op}#{is_current}"
       end
+      puts ""
+      puts "0 ) Back to menu"
     end
 
     def clean_input(input)
@@ -24,7 +27,7 @@ module RailsNewApp
     end
 
     def valid?(input)
-      if options[input]
+      if options[input - 1]
         true
       else
         puts "Invalid option, choose again:"
@@ -33,7 +36,7 @@ module RailsNewApp
     end
 
     def return_value
-      lower = lowercase_keys[@selection]
+      lower = lowercase_keys[@selection - 1]
 
       {
         option_number: @selection,
