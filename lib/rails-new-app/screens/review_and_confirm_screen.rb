@@ -38,7 +38,7 @@ module RailsNewApp
     end
 
     def valid?(input)
-      if input =~ /\A*Y(es)?\z|\A*B(ack)?\z|\A*N(o)?\z/i
+      if /\A*Y(es)?\z|\A*B(ack)?\z|\A*N(o)?\z/i.match?(input)
         @error = false
         true
       else

@@ -1,14 +1,16 @@
-ENV['env'] ||= 'test'
+ENV["env"] ||= "test"
 
-require "simplecov"
-require "simplecov-console"
-SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter.new([
-  SimpleCov::Formatter::HTMLFormatter,
-  SimpleCov::Formatter::Console,
-])
-SimpleCov.start
+if ENV["COVERAGE"]
+  require "simplecov"
+  require "simplecov-console"
+  SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter.new([
+    SimpleCov::Formatter::HTMLFormatter,
+    SimpleCov::Formatter::Console
+  ])
+  SimpleCov.start
+end
 
-require 'minitest/autorun'
+require "minitest/autorun"
 require_relative "../lib/rails-new-app"
 
 class Minitest::Test
