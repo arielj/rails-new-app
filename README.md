@@ -11,14 +11,6 @@ Run `rails-new-app` command and follow the step by step wizard.
 
 It will use the current default Rails version, so you should install the version you want to use, these generators are currently tested with Rails 6.
 
-# Tests:
-
-Run `rake test`.
-
-### Alternative
-
-If, for any reason, the menu navigation does not work, run `rails-new-app navigation=false`.
-
 ## Current configurations:
 - Database: MySQL / PostgreSQL / SQLite
 - Tests:
@@ -61,7 +53,15 @@ If, for any reason, the menu navigation does not work, run `rails-new-app naviga
 - type of app: standard/minimal/api
 - support other databases like MongoDB that require more config
 
-## Adding more configurations and tools:
+## For developers
+
+### Setup:
+
+- Clone the repo
+- Run `bundle install`
+- You can run the app with `./exe/rails-new-app`
+
+### Adding more configurations and tools:
 
 1. Add a new step at `lib/rails-new-app/steps` (or modify an existing one)
 2. Collect step config in the `config` hash
@@ -73,7 +73,7 @@ If, for any reason, the menu navigation does not work, run `rails-new-app naviga
 
 * Steps 5 and 6 are split so we can run `bundle install` once.
 
-## Quick test for developers
+### Quick scripted execution:
 
 Since the app uses the STDIN to configure the generator, you can pipe a stream of inputs that a user would do to the command to quickly set all the desired options. For example:
 
@@ -99,6 +99,10 @@ cat defaults.txt | rails-new-app
 
 This can eventually be used to share complete setups or generate defaults.
 
+### Tests:
+
+Run `rake test` or `COVERAGE=true rake test`.
+
 ## Changelogs
 
 ### 0.0.1
@@ -113,3 +117,10 @@ Added navigation between menus.
 - Add a git initial commit
 - Added new tools: Faker, pagination gems
 - Bug fixing
+
+### 0.1
+- Refactor screens (ex steps) handling
+- Refactor user input handling to allow easier testing
+- Added tests for multiple screens
+- Bug fixing (Pagy config, incorrect indexing)
+- Added SimpleCov and easier dev setup
