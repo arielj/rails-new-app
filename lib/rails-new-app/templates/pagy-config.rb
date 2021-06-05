@@ -1,4 +1,4 @@
-initializer "pagy.rb", "Check initializer options at: https://github.com/ddnexus/pagy/blob/master/lib/config/pagy.rb"
+initializer "pagy.rb", "# Check initializer options at: https://github.com/ddnexus/pagy/blob/master/lib/config/pagy.rb"
 
 inject_into_file "app/helpers/application_helper.rb", after: "module ApplicationHelper\n" do
   <<~'RUBY'

@@ -1,5 +1,5 @@
 # rails-new-app
-Command-line tool to assist in the creation of new Rails 5 and 6 apps
+Command-line tool to assist in the creation of new Rails 6 apps
 
 ## Installation:
 
@@ -8,6 +8,8 @@ Run `gem install "rails-new-app"`
 ## Usage:
 
 Run `rails-new-app` command and follow the step by step wizard.
+
+It will use the current default Rails version, so you should install the version you want to use, these generators are currently tested with Rails 6.
 
 # Tests:
 
@@ -18,7 +20,6 @@ Run `rake test`.
 If, for any reason, the menu navigation does not work, run `rails-new-app navigation=false`.
 
 ## Current configurations:
-- Rails version (validate and install)
 - Database: MySQL / PostgreSQL / SQLite
 - Tests:
 - - runner: none / Minitest / RSpec
@@ -42,8 +43,6 @@ If, for any reason, the menu navigation does not work, run `rails-new-app naviga
 - add more tools
 - support `rails new` flags configuration
 - research requirements
-- improve validations (check rails version, ruby version, if gems are compatible with rails, etc)
-- show the user the current Ruby version
 - support a `rails-new-app-defaults` file at the HOME dir to set default options if empty answers
 
 #### Ideas for other tools:
@@ -73,6 +72,32 @@ If, for any reason, the menu navigation does not work, run `rails-new-app naviga
 7. Update Runner to run the `update_gemfile` and `configure` methods
 
 * Steps 5 and 6 are split so we can run `bundle install` once.
+
+## Quick test for developers
+
+Since the app uses the STDIN to configure the generator, you can pipe a stream of inputs that a user would do to the command to quickly set all the desired options. For example:
+
+```
+# inside any text file, like... defaults.txt
+1
+MyApp
+2
+3
+8
+2
+0
+Y
+```
+
+These inputs set the name (1) to `MyApp`, then goes to database config (2) and sets PostrgreSQL (3), then goes to pagination (8) and sets Pagy (2), finally, it goes to `review and confirm` (0) and confirms it (Y).
+
+With that file you can do a quick setup with:
+
+```sh
+cat defaults.txt | rails-new-app
+```
+
+This can eventually be used to share complete setups or generate defaults.
 
 ## Changelogs
 

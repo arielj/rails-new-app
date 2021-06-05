@@ -16,8 +16,10 @@ describe "Confirmation" do
     assert_equal :abort, select_option("No")
   end
 
-  it "can be accepted" do
-    assert_equal :finish, select_option("Yes")
+  %w[y Y yes YES Yes yEs YeS yeS].each do |yes|
+    it "can be accepted" do
+      assert_equal :finish, select_option(yes)
+    end
   end
 
   it "can go back to menu" do

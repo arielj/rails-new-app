@@ -49,7 +49,7 @@ module RailsNewApp
           review_and_confirm
         end
 
-      if confirmation == :finished
+      if confirmation == :finish
         rails_new
         process_config
         end_message
@@ -141,7 +141,7 @@ module RailsNewApp
           RubyLinterProcessor,
           PaginationProcessor,
           AuthorizationProcessor,
-          AuthentiacationProcessor
+          AuthenticationProcessor
         ].each { |p| p.update_gemfile(config) }
 
         # install gems
@@ -156,7 +156,7 @@ module RailsNewApp
           RubyLinterProcessor,
           PaginationProcessor,
           AuthorizationProcessor,
-          AuthentiacationProcessor
+          AuthenticationProcessor
         ].each { |p| p.configure(config) }
 
         after_create
