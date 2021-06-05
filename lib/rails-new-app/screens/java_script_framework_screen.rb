@@ -1,5 +1,5 @@
 module RailsNewApp
-  class JavaScriptFrameworkStep < ChoiceStep
+  class JavaScriptFrameworkScreen < ChoiceScreen
     def rails_new_options
       %W[react vue angular elm stimulus]
     end

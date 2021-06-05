@@ -15,6 +15,6 @@ module RailsNewApp
     end
     ARGV.clear
 
-    Runner.new.run(navigation)
+    Runner.new(navigation: navigation).run
   end
 end

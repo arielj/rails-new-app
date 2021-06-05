@@ -1,5 +1,5 @@
 module RailsNewApp
-  class RubyLinterStep < ChoiceStep
+  class RubyLinterScreen < ChoiceScreen
     def step_question
       "Type the option number of the Ruby Linter gem to use:"
     end

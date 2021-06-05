@@ -9,6 +9,10 @@ Run `gem install "rails-new-app"`
 
 Run `rails-new-app` command and follow the step by step wizard.
 
+# Tests:
+
+Run `rake test`.
+
 ### Alternative
 
 If, for any reason, the menu navigation does not work, run `rails-new-app navigation=false`.

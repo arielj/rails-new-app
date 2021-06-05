@@ -1,5 +1,5 @@
 module RailsNewApp
-  class TestFactoryStep < ChoiceStep
+  class CodeCoverageScreen < ChoiceScreen
     def step_question
       warning =
         if config[:test_runner][:key] == ""
@@ -7,20 +7,19 @@ module RailsNewApp
         else
           ""
         end
-      "#{warning}Type the option number of the test factories tool to use:"
+      "#{warning}Type the option number of the code coverage tool to use:"
     end
 
     def options
-      # TODO: add Forgery and Fabrication?
-      ["None", "FactoryBot"]
+      ["None", "SimpleCov"]
     end
 
     def lowercase_keys
-      ["", "factory_bot"]
+      ["", "simplecov"]
     end
 
     def after_valid
-      puts "Selected test factories tool is: #{option}\n"
+      puts "Selected code coverage tool is: #{option}\n"
     end
 
     def self.default
@@ -32,7 +31,7 @@ module RailsNewApp
     end
 
     def next_step
-      :test_fake_data
+      :test_factory
     end
   end
 end

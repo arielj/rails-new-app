@@ -1,5 +1,5 @@
 module RailsNewApp
-  class AuthStep < ChoiceStep
+  class AuthScreen < ChoiceScreen
     def options
       ["Authentication", "Authorization"]
     end
@@ -17,7 +17,7 @@ module RailsNewApp
     end
 
     def next_step
-      case @selection
+      case @input
       when 1 then :authentication
       when 2 then :authorization
       end

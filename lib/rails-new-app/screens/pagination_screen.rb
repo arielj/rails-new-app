@@ -1,5 +1,5 @@
 module RailsNewApp
-  class PaginationStep < ChoiceStep
+  class PaginationScreen < ChoiceScreen
     def step_question
       "Type the option number of the Pagination gem to use:"
     end

@@ -1,19 +1,19 @@
 module RailsNewApp
-  class TemplateEngineStep < ChoiceStep
+  class FormBuilderScreen < ChoiceScreen
     def step_question
-      "Type the option number of the Template Engine gem to use:"
+      "Type the option number of the Form Builder gem to use:"
     end
 
     def options
-      ["None", "Slim", "HAML"]
+      ["None", "Simple Form", "Formtastic"]
     end
 
     def lowercase_keys
-      ["", "slim", "haml"]
+      ["", "simple_form", "formtastic"]
     end
 
     def after_valid
-      puts "Selected template engine is: #{option}\n"
+      puts "Selected Form builder is: #{option}\n"
     end
 
     def self.default

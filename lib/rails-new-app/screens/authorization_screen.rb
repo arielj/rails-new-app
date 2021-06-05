@@ -1,5 +1,5 @@
 module RailsNewApp
-  class AuthorizationStep < ChoiceStep
+  class AuthorizationScreen < ChoiceScreen
     def step_question
       "Type the option number of the Authorization gem to use:"
     end

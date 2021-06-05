@@ -1,5 +1,5 @@
 module RailsNewApp
-  class YesNoChoiceStep < ChoiceStep
+  class YesNoChoiceScreen < ChoiceScreen
     def options
       ["Yes", "No"]
     end

@@ -1,15 +1,15 @@
 module RailsNewApp
-  class DatabaseStep < ChoiceStep
+  class DatabaseScreen < ChoiceScreen
     def rails_new_options
       %W[mysql postgresql sqlite3 oracle sqlserver jdbcmysql jdbcsqlite3 jdbcpostgresql jdbc]
     end
 
     def options
-      ["None", "SQLite", "MySQL / MariaDB", "PostgreSQL"]
+      ["SQLite", "MySQL / MariaDB", "PostgreSQL"]
     end
 
     def lowercase_keys
-      ["", "sqlite3", "mysql", "postgresql"]
+      ["sqlite3", "mysql", "postgresql"]
     end
 
     def step_question
@@ -23,15 +23,17 @@ module RailsNewApp
     def return_value
       super.tap do |h|
         h[:in_rails_new] = rails_new_options.include?(h[:key])
+        h[:is_default] = h[:key] == :sqlite3
       end
     end
 
     def self.default
       {
-        option_number: "1",
+        option_number: 1,
         name: "SQLite",
         key: "sqlite3",
-        in_rails_new: true
+        in_rails_new: true,
+        is_default: true
       }
     end
   end

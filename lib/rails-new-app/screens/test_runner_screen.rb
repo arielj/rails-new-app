@@ -1,5 +1,5 @@
 module RailsNewApp
-  class TestRunnerStep < ChoiceStep
+  class TestRunnerScreen < ChoiceScreen
     def options
       ["None", "Minitest", "RSpec"]
     end

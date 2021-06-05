@@ -1,5 +1,5 @@
 module RailsNewApp
-  class TestFakeDataStep < ChoiceStep
+  class TestFactoryScreen < ChoiceScreen
     def step_question
       warning =
         if config[:test_runner][:key] == ""
@@ -7,20 +7,20 @@ module RailsNewApp
         else
           ""
         end
-      "#{warning}Type the option number of the test fake data tool to use:"
+      "#{warning}Type the option number of the test factories tool to use:"
     end
 
     def options
-      # TODO: add ffaker and Fake Person?
-      ["None", "Faker"]
+      # TODO: add Forgery and Fabrication?
+      ["None", "FactoryBot"]
     end
 
     def lowercase_keys
-      ["", "faker"]
+      ["", "factory_bot"]
     end
 
     def after_valid
-      puts "Selected test fake data tool is: #{option}\n"
+      puts "Selected test factories tool is: #{option}\n"
     end
 
     def self.default
@@ -29,6 +29,10 @@ module RailsNewApp
         name: "None (Default)",
         key: ""
       }
+    end
+
+    def next_step
+      :test_fake_data
     end
   end
 end
