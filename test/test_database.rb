@@ -10,7 +10,7 @@ describe "Database config" do
     out = render
     assert_match %r{2 : Database}, out
 
-    select_option("2")
+    user_input("2")
     assert_equal RailsNewApp::DatabaseScreen, @runner.current_screen.class
 
     out = render
@@ -21,7 +21,7 @@ describe "Database config" do
     assert_match %r{3 \) PostgreSQL}, out
     assert_match %r{0 \) Back to menu}, out
 
-    select_option("3")
+    user_input("3")
 
     assert_equal RailsNewApp::MenuScreen, @runner.current_screen.class
     assert_equal "postgresql", @runner.config[:database][:key]

@@ -12,7 +12,7 @@ describe "Testing config" do
     out = render
     assert_match %r{3 : TestRunner}, out
 
-    select_option("3")
+    user_input("3")
     assert_equal RailsNewApp::TestRunnerScreen, @runner.current_screen.class
 
     out = render
@@ -23,15 +23,15 @@ describe "Testing config" do
     assert_match %r{3 \) RSpec}, out
     assert_match %r{0 \) Back to menu}, out
 
-    select_option("3")
+    user_input("3")
 
     assert_equal RailsNewApp::CodeCoverageScreen, @runner.current_screen.class
     assert_equal "rspec", @runner.config[:test_runner][:key]
   end
 
   it "shows code coverage options if test runner" do
-    select_option("3") # test runner option
-    select_option("3") # rspec
+    user_input("3") # test runner option
+    user_input("3") # rspec
 
     assert_equal RailsNewApp::CodeCoverageScreen, @runner.current_screen.class
 
@@ -43,16 +43,16 @@ describe "Testing config" do
   end
 
   it "shows the menu if no test runner" do
-    select_option("3") # test runner option
-    select_option("1") # none
+    user_input("3") # test runner option
+    user_input("1") # none
 
     assert_equal RailsNewApp::MenuScreen, @runner.current_screen.class
   end
 
   it "shows the factory options after code coverage" do
-    select_option("3") # test runner option
-    select_option("2") # minitest
-    select_option("2") # simplecov
+    user_input("3") # test runner option
+    user_input("2") # minitest
+    user_input("2") # simplecov
 
     assert_equal RailsNewApp::TestFactoryScreen, @runner.current_screen.class
 
@@ -64,10 +64,10 @@ describe "Testing config" do
   end
 
   it "shows the fake data options after code coverage and factory" do
-    select_option("3") # test runner option
-    select_option("3") # rspec
-    select_option("1") # no code coverage
-    select_option("2") # factory_bot
+    user_input("3") # test runner option
+    user_input("3") # rspec
+    user_input("1") # no code coverage
+    user_input("2") # factory_bot
 
     assert_equal RailsNewApp::TestFakeDataScreen, @runner.current_screen.class
 

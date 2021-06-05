@@ -10,7 +10,7 @@ describe "Ruby Linter config" do
     out = render
     assert_match %r{5 : RubyLinter}, out
 
-    select_option("5")
+    user_input("5")
     assert_equal RailsNewApp::RubyLinterScreen, @runner.current_screen.class
 
     out = render
@@ -20,7 +20,7 @@ describe "Ruby Linter config" do
     assert_match %r{2 \) RuboCop}, out
     assert_match %r{3 \) StandardRB}, out
 
-    select_option("2")
+    user_input("2")
 
     assert_equal RailsNewApp::MenuScreen, @runner.current_screen.class
     assert_equal "rubocop", @runner.config[:ruby_linter][:key]

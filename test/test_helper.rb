@@ -14,7 +14,7 @@ require "minitest/autorun"
 require_relative "../lib/rails-new-app"
 
 class Minitest::Test
-  def select_option(option)
+  def user_input(option)
     @runner.process_user_input(option)
   end
 

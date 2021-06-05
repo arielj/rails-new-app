@@ -4,7 +4,7 @@ describe "Confirmation" do
   before do
     @runner = RailsNewApp::Runner.new
     @runner.config[:app_name] = "TestApp"
-    select_option("0")
+    user_input("0")
   end
 
   it "shows the options" do
@@ -13,16 +13,16 @@ describe "Confirmation" do
   end
 
   it "can be aborted" do
-    assert_equal :abort, select_option("No")
+    assert_equal :abort, user_input("No")
   end
 
   %w[y Y yes YES Yes yEs YeS yeS].each do |yes|
     it "can be accepted" do
-      assert_equal :finish, select_option(yes)
+      assert_equal :finish, user_input(yes)
     end
   end
 
   it "can go back to menu" do
-    assert_equal RailsNewApp::MenuScreen, select_option("Back").class
+    assert_equal RailsNewApp::MenuScreen, user_input("Back").class
   end
 end

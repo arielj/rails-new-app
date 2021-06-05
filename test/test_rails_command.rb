@@ -28,4 +28,16 @@ describe "Rails command" do
 
     assert_equal "rails new TestApp", cmnd
   end
+
+  it "calls the rails new command at the end" do
+    fake = Minitest::Mock.new
+    fake.expect :call, nil, ["rails new TestApp"]
+    @runner.stub :run_cmnd, fake do
+      capture_io do
+        @runner.rails_new
+      end
+    end
+
+    fake.verify
+  end
 end
