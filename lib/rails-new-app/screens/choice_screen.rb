@@ -5,7 +5,7 @@ module RailsNewApp
     end
 
     def option
-      options[@input]
+      options[@input - 1]
     end
 
     def screen_text

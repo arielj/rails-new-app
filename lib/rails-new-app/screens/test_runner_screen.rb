@@ -18,7 +18,7 @@ module RailsNewApp
 
     def self.default
       {
-        option_number: 1,
+        option_number: 2,
         name: "Minitest",
         key: "minitest",
         in_rails_new: true
@@ -26,7 +26,7 @@ module RailsNewApp
     end
 
     def next_step
-      option == "None" ? nil : :code_coverage
+      option == "None" ? :menu : :code_coverage
     end
   end
 end

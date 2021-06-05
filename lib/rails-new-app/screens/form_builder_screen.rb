@@ -18,7 +18,7 @@ module RailsNewApp
 
     def self.default
       {
-        option_number: 0,
+        option_number: 1,
         name: "None",
         key: ""
       }
