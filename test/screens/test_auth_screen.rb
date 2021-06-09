@@ -1,7 +1,4 @@
 require "test_helper"
-%w[test_runner test_factory test_fake_data].each do |file|
-  require_relative "../lib/rails-new-app/screens/#{file}_screen"
-end
 
 describe "Auth config" do
   before do

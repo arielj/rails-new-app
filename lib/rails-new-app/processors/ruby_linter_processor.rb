@@ -4,6 +4,9 @@ module RailsNewApp
       case config[:ruby_linter][:key]
       when "rubocop", "standardrb"
         apply_template "#{config[:ruby_linter][:key]}-gemfile"
+
+        # standardrb does not have specific config for rspec/minitest
+        # we add the rubocop gem in both cases
         case config[:test_runner][:key]
         when "minitest" then apply_template "rubocop-minitest-gemfile"
         when "rspec" then apply_template "rubocop-rspec-gemfile"

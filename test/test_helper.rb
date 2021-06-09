@@ -13,6 +13,8 @@ end
 require "minitest/autorun"
 require_relative "../lib/rails-new-app"
 
+require 'spy/integration'
+
 class Minitest::Test
   def user_input(option)
     @runner.process_user_input(option)

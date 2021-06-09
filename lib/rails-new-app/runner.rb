@@ -127,37 +127,45 @@ module RailsNewApp
       run_cmnd(command)
     end
 
+    def update_gemfile
+      # add different gems
+      [
+        TestRunnerProcessor,
+        CodeCoverageProcessor,
+        TestFactoryProcessor,
+        TestFakeDataProcessor,
+        TemplateEngineProcessor,
+        FormBuilderProcessor,
+        RubyLinterProcessor,
+        PaginationProcessor,
+        AuthorizationProcessor,
+        AuthenticationProcessor
+      ].each { |p| p.update_gemfile(config) }
+    end
+
+    def configure_gems
+      # configure each gem
+      [
+        TestRunnerProcessor,
+        CodeCoverageProcessor,
+        TestFactoryProcessor,
+        FormBuilderProcessor,
+        RubyLinterProcessor,
+        PaginationProcessor,
+        AuthorizationProcessor,
+        AuthenticationProcessor
+      ].each { |p| p.configure(config) }
+    end
+
     def process_config
       # cd into rails app
       Dir.chdir(config[:app_name]) do
-        # add different gems
-        [
-          TestRunnerProcessor,
-          CodeCoverageProcessor,
-          TestFactoryProcessor,
-          TestFakeDataProcessor,
-          TemplateEngineProcessor,
-          FormBuilderProcessor,
-          RubyLinterProcessor,
-          PaginationProcessor,
-          AuthorizationProcessor,
-          AuthenticationProcessor
-        ].each { |p| p.update_gemfile(config) }
+        update_gemfile
 
         # install gems
         run_cmnd("bundle install")
 
-        # configure each gem
-        [
-          TestRunnerProcessor,
-          CodeCoverageProcessor,
-          TestFactoryProcessor,
-          FormBuilderProcessor,
-          RubyLinterProcessor,
-          PaginationProcessor,
-          AuthorizationProcessor,
-          AuthenticationProcessor
-        ].each { |p| p.configure(config) }
+        configure_gems
 
         after_create
       end

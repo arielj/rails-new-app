@@ -1,5 +1,4 @@
 require "test_helper"
-require_relative "../lib/rails-new-app/screens/database_screen"
 
 describe "Database config" do
   before do

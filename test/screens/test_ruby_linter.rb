@@ -1,5 +1,4 @@
 require "test_helper"
-require_relative "../lib/rails-new-app/screens/ruby_linter_screen"
 
 describe "Ruby Linter config" do
   before do
