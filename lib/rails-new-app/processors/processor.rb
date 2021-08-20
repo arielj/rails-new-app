@@ -19,11 +19,15 @@ module RailsNewApp
     end
 
     def apply_template(template)
-      system("rails app:template LOCATION=#{TEMPLATES_PATH}/#{template}.rb")
+      run_cmnd("rails app:template LOCATION=#{TEMPLATES_PATH}/#{template}.rb")
     end
 
     def log(string)
       puts(string) unless ENV["env"] == "test"
+    end
+
+    def run_cmnd(cmd)
+      system(cmd) unless ENV["env"] == "test"
     end
   end
 end

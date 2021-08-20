@@ -18,6 +18,7 @@ describe "Menu" do
     assert_match %r{6 : TemplateEngine}, out
     assert_match %r{7 : FormBuilder}, out
     assert_match %r{8 : Pagination}, out
+    assert_match %r{9 : Auth}, out
 
     assert_match %r{n : Next menu}, out
     assert_match %r{0 : Review and confirm}, out
@@ -31,7 +32,9 @@ describe "Menu" do
       @runner.show_current_screen
     end
 
-    assert_match %r{1 : Auth}, out
+    assert_match %r{1 : GitRemote}, out
+    assert_match %r{2 : GitBranch}, out
+    assert_match %r{3 : ContinuousIntegration}, out
 
     assert_match %r{p : Previous menu}, out
     assert_match %r{0 : Review and confirm}, out

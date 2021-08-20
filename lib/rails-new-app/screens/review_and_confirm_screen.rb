@@ -28,7 +28,8 @@ module RailsNewApp
           Pagination: #{config[:pagination]}
           Authorization: #{config[:authorization]}
           Authentication: #{config[:authentication]}
-          Git Remote: #{config[:git]}
+          Git Remote: #{config[:git_remote]}
+          Git Branch: #{config[:git_branch].strip == "" ? "main" : config[:git_branch]}
           CI Config: #{config[:continuous_integration]}
 
         REVIEW

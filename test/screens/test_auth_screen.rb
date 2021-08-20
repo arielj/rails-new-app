@@ -3,14 +3,14 @@ require "test_helper"
 describe "Auth config" do
   before do
     @runner = RailsNewApp::Runner.new
-    user_input("n")
+    # user_input("n")
   end
 
   it "shows the auth categories" do
     out = render
-    assert_match %r{1 : Auth}, out
+    assert_match %r{9 : Auth}, out
 
-    user_input("1")
+    user_input("9")
     assert_equal RailsNewApp::AuthScreen, @runner.current_screen.class
 
     out = render
@@ -22,7 +22,7 @@ describe "Auth config" do
   end
 
   it "can set an authentication gem" do
-    user_input("1") # auth
+    user_input("9") # auth
     user_input("1") # authentication
 
     out = render
@@ -34,7 +34,7 @@ describe "Auth config" do
   end
 
   it "can set an authorization gem" do
-    user_input("1") # auth
+    user_input("9") # auth
     user_input("2") # authorization
 
     out = render

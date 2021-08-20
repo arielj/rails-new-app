@@ -17,7 +17,10 @@ describe "Running processors" do
         RailsNewApp::RubyLinterProcessor,
         RailsNewApp::PaginationProcessor,
         RailsNewApp::AuthorizationProcessor,
-        RailsNewApp::AuthenticationProcessor
+        RailsNewApp::AuthenticationProcessor,
+        RailsNewApp::GitBranchProcessor,
+        RailsNewApp::GitRemoteProcessor,
+        RailsNewApp::ContinuousIntegrationProcessor
       ].map do |p|
         Spy.on(p, :update_gemfile)
       end
@@ -37,7 +40,10 @@ describe "Running processors" do
         RailsNewApp::RubyLinterProcessor,
         RailsNewApp::PaginationProcessor,
         RailsNewApp::AuthorizationProcessor,
-        RailsNewApp::AuthenticationProcessor
+        RailsNewApp::AuthenticationProcessor,
+        RailsNewApp::GitBranchProcessor,
+        RailsNewApp::GitRemoteProcessor,
+        RailsNewApp::ContinuousIntegrationProcessor
       ].map do |p|
         Spy.on(p, :configure)
       end

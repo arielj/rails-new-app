@@ -14,8 +14,9 @@ module RailsNewApp
     {option: "6", page: 1, class: TemplateEngineScreen},
     {option: "7", page: 1, class: FormBuilderScreen},
     {option: "8", page: 1, class: PaginationScreen},
-    {option: "1", page: 2, class: AuthScreen},
-    {option: "2", page: 2, class: GitScreen},
+    {option: "9", page: 1, class: AuthScreen},
+    {option: "1", page: 2, class: GitRemoteScreen},
+    {option: "2", page: 2, class: GitBranchScreen},
     {option: "3", page: 2, class: ContinuousIntegrationScreen},
     {option: nil, class: CodeCoverageScreen},
     {option: nil, class: TestFactoryScreen},
@@ -155,7 +156,8 @@ module RailsNewApp
         PaginationProcessor,
         AuthorizationProcessor,
         AuthenticationProcessor,
-        GitProcessor,
+        GitBranchProcessor,
+        GitRemoteProcessor,
         ContinuousIntegrationProcessor
       ].each { |p| p.configure(config) }
     end
@@ -199,8 +201,8 @@ module RailsNewApp
         # use desired js framework
         ar << "--webpack=#{config[:java_script_framework][:key]}" if config[:java_script_framework][:in_rails_new]
         # ar << "--skip-javascript"
-        # add app name
         # ar << "--minimal"
+        # add app name
         ar << config[:app_name]
       end.join(" ")
     end
@@ -213,7 +215,6 @@ module RailsNewApp
     end
 
     def initial_commit
-      run_cmnd("git checkout -b main")
       run_cmnd("git add .")
       run_cmnd("git commit -a -m 'Initial commit'")
     end

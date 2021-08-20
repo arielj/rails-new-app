@@ -1,5 +1,5 @@
 module RailsNewApp
-  class GitScreen < Screen
+  class GitRemoteScreen < Screen
     def screen_text
       "Add your git remote, it will be added to the git configuration of the new app:"
     end
