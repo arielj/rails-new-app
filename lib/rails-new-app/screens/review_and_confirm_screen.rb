@@ -18,7 +18,8 @@ module RailsNewApp
           Form builder: #{config[:form_builder]}
           Pagination: #{config[:pagination]}
           Authorization: #{config[:authorization]}
-          Authentication: #{config[:authentication]}        
+          Authentication: #{config[:authentication]}
+          Git Remote: #{config[:git]}
 
         REVIEW
 

@@ -15,6 +15,7 @@ module RailsNewApp
     {option: "7", page: 1, class: FormBuilderScreen},
     {option: "8", page: 1, class: PaginationScreen},
     {option: "1", page: 2, class: AuthScreen},
+    {option: "2", page: 2, class: GitScreen},
     {option: nil, class: CodeCoverageScreen},
     {option: nil, class: TestFactoryScreen},
     {option: nil, class: TestFakeDataScreen},
@@ -143,8 +144,7 @@ module RailsNewApp
       ].each { |p| p.update_gemfile(config) }
     end
 
-    def configure_gems
-      # configure each gem
+    def apply_configuration
       [
         TestRunnerProcessor,
         CodeCoverageProcessor,
@@ -153,7 +153,8 @@ module RailsNewApp
         RubyLinterProcessor,
         PaginationProcessor,
         AuthorizationProcessor,
-        AuthenticationProcessor
+        AuthenticationProcessor,
+        GitProcessor
       ].each { |p| p.configure(config) }
     end
 
@@ -165,7 +166,7 @@ module RailsNewApp
         # install gems
         run_cmnd("bundle install")
 
-        configure_gems
+        apply_configuration
 
         after_create
       end
@@ -197,6 +198,7 @@ module RailsNewApp
         ar << "--webpack=#{config[:java_script_framework][:key]}" if config[:java_script_framework][:in_rails_new]
         # ar << "--skip-javascript"
         # add app name
+        ar << "--minimal"
         ar << config[:app_name]
       end.join(" ")
     end
