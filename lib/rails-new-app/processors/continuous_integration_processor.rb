@@ -23,9 +23,15 @@ TEST_STEPS
       - name: Run System Tests
         run: bundle exec rails test:system
 TEST_STEPS
+          else
+            ""
           end
         
         file_content.gsub!("<TEST_STEPS>", test_steps)
+
+        branch_name = config[:git_branch].strip == "" ? "main" : config[:git_branch]
+
+        file_content.gsub!("<BRANCH_NAME>", branch_name)
 
         workflows_dir = File.join(Dir.pwd, ".github", "workflows")
         FileUtils.mkdir_p(workflows_dir)

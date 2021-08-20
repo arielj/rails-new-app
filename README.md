@@ -37,6 +37,7 @@ It will use the current default Rails version, so you should install the version
 - Authorization: None / Pundit / CanCanCan
 - Authentication: None / Devise
 - RubyLinter: None / RuboCop / StandardRB
+- Git: add remote, set branch name, include basic test running github actions config
 
 ## TODOs and ideas:
 

@@ -158,7 +158,8 @@ module RailsNewApp
         AuthenticationProcessor,
         GitBranchProcessor,
         GitRemoteProcessor,
-        ContinuousIntegrationProcessor
+        ContinuousIntegrationProcessor,
+        GitignoreProcessor
       ].each { |p| p.configure(config) }
     end
 

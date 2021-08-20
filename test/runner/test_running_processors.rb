@@ -17,17 +17,14 @@ describe "Running processors" do
         RailsNewApp::RubyLinterProcessor,
         RailsNewApp::PaginationProcessor,
         RailsNewApp::AuthorizationProcessor,
-        RailsNewApp::AuthenticationProcessor,
-        RailsNewApp::GitBranchProcessor,
-        RailsNewApp::GitRemoteProcessor,
-        RailsNewApp::ContinuousIntegrationProcessor
+        RailsNewApp::AuthenticationProcessor
       ].map do |p|
         Spy.on(p, :update_gemfile)
       end
     
     @runner.update_gemfile
 
-    spies.all?(&:has_been_called?)
+    assert spies.all?(&:has_been_called?)
   end
 
   it "applies configurations" do
@@ -43,13 +40,14 @@ describe "Running processors" do
         RailsNewApp::AuthenticationProcessor,
         RailsNewApp::GitBranchProcessor,
         RailsNewApp::GitRemoteProcessor,
-        RailsNewApp::ContinuousIntegrationProcessor
+        RailsNewApp::ContinuousIntegrationProcessor,
+        RailsNewApp::GitignoreProcessor
       ].map do |p|
         Spy.on(p, :configure)
       end
     
     @runner.apply_configuration
 
-    spies.all?(&:has_been_called?)
+    assert spies.all?(&:has_been_called?)
   end
 end
