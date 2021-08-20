@@ -1,12 +1,21 @@
 module RailsNewApp
   class ReviewAndConfirmScreen < Screen
     def screen_text
+      rails_ver = `rails -v`
+      rails_ver.gsub!("\n", '')
+
       [].tap do |ls|
         ls << <<~REVIEW
           ===== New Rails app config =====
           
-          App name: #{config[:app_name]}
+          # We are using the default versions in your system
+          # If you want to use a different version of Ruby or
+          # Rails, make sure to install those
+
           Ruby version: #{RUBY_VERSION}
+          Rails version: #{rails_ver}
+
+          App name: #{config[:app_name]}
           Database: #{config[:database]}
           Test runner: #{config[:test_runner]}
           Code coverage: #{config[:code_coverage]}

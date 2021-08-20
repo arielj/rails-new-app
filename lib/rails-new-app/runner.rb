@@ -198,7 +198,7 @@ module RailsNewApp
         ar << "--webpack=#{config[:java_script_framework][:key]}" if config[:java_script_framework][:in_rails_new]
         # ar << "--skip-javascript"
         # add app name
-        ar << "--minimal"
+        # ar << "--minimal"
         ar << config[:app_name]
       end.join(" ")
     end
