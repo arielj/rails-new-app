@@ -1,5 +1,16 @@
 # rails-new-app
+
 Command-line tool to assist in the creation of new Rails 6 apps
+
+## Requirements
+
+- **Ruby (make sure `ruby -v` shows your desired version before running this)**
+- **Rails (make sure `rails -v` shows your desired version before running this)**
+- Git (the `rails new` command initializes a git repo)
+- Any tool related to the gems you want to use (Redis, PostgreSQL, etc)
+- C dev tools if you plan to use any gem that requires compilation of native extensions
+
+> This is currently tested only on Linux
 
 ## Installation:
 
@@ -12,6 +23,7 @@ Run `rails-new-app` command and follow the step by step wizard.
 It will use the current default Rails version, so you should install the version you want to use, these generators are currently tested with Rails 6.
 
 ## Current configurations:
+
 - Database: MySQL / PostgreSQL / SQLite
 - Tests:
 - - runner: none / Minitest / RSpec
@@ -27,6 +39,7 @@ It will use the current default Rails version, so you should install the version
 - RubyLinter: None / RuboCop / StandardRB
 
 ## TODOs and ideas:
+
 - improve GUI and UX
 - - toggle options using arrow keys?
 - - describe steps better
@@ -38,6 +51,7 @@ It will use the current default Rails version, so you should install the version
 - support a `rails-new-app-defaults` file at the HOME dir to set default options if empty answers
 
 #### Ideas for other tools:
+
 - dotenv/figaro
 - resque/sideqik/suckerpunch/other?
 - CSS framework? bootstrap/tailwind/material/spectre/bulma (this affects the form builders processor)
@@ -71,7 +85,7 @@ It will use the current default Rails version, so you should install the version
 6. Add another template to ONLY modify the code/configuration at `lib/rails-new-app/templates`
 7. Update Runner to run the `update_gemfile` and `configure` methods
 
-* Steps 5 and 6 are split so we can run `bundle install` once.
+- Steps 5 and 6 are split so we can run `bundle install` once.
 
 ### Quick scripted execution:
 
@@ -106,12 +120,15 @@ Run `rake test` or `COVERAGE=true rake test`.
 ## Changelogs
 
 ### 0.0.1
+
 This is a really early Alpha version as a proof of concept.
 
 ### 0.0.2
+
 Added navigation between menus.
 
 ### 0.0.3
+
 - Added `next_step` to configure related tools without going back to menu
 - Apply linter fixes after creation
 - Add a git initial commit
@@ -119,6 +136,7 @@ Added navigation between menus.
 - Bug fixing
 
 ### 0.1
+
 - Refactor screens (ex steps) handling
 - Refactor user input handling to allow easier testing
 - Added tests for multiple screens
