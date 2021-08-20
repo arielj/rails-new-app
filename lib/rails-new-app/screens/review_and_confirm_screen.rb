@@ -1,7 +1,7 @@
 module RailsNewApp
   class ReviewAndConfirmScreen < Screen
     def screen_text
-      rails_ver = `rails -v`
+      rails_ver = ENV["env"] == "test" ? '' : `rails -v`
       rails_ver.gsub!("\n", '')
 
       [].tap do |ls|

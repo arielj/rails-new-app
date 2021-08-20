@@ -42,7 +42,7 @@ describe "Running processors" do
         Spy.on(p, :configure)
       end
     
-    @runner.configure_gems
+    @runner.apply_configuration
 
     spies.all?(&:has_been_called?)
   end
