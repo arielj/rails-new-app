@@ -7,7 +7,7 @@ module RailsNewApp
     end
 
     def configure(config)
-      puts "Processing Authentication config"
+      log "Processing Authentication config"
       case config[:authentication][:key]
       when "devise" then apply_template "devise-config"
       end

@@ -29,6 +29,7 @@ module RailsNewApp
           Authorization: #{config[:authorization]}
           Authentication: #{config[:authentication]}
           Git Remote: #{config[:git]}
+          CI Config: #{config[:continuous_integration]}
 
         REVIEW
 

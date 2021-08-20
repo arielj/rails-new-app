@@ -11,7 +11,7 @@ module RailsNewApp
     def configure(config)
       return if config[:test_runner][:key] == ""
 
-      puts "Processing Test Factory config"
+      log "Processing Test Factory config"
       case config[:test_factory][:key]
       when "factory_boy" then apply_template "factory_bot-#{config[:test_runner][:key]}-config"
       end

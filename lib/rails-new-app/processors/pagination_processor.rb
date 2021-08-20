@@ -9,7 +9,7 @@ module RailsNewApp
     end
 
     def configure(config)
-      puts "Processing Pagination config"
+      log "Processing Pagination config"
       case config[:pagination][:key]
       when "pagy" then apply_template "pagy-config"
       end

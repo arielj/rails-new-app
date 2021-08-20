@@ -15,7 +15,7 @@ module RailsNewApp
     end
 
     def configure(config)
-      puts "Processing Ruby Linter config"
+      log "Processing Ruby Linter config"
       case config[:ruby_linter][:key]
       when "rubocop" then apply_template "rubocop-config"
       when "standardrb" then apply_template "standardrb-config"

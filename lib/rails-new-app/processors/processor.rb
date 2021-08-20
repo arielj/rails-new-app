@@ -1,6 +1,6 @@
 module RailsNewApp
   class Processor
-    PATH = File.expand_path("../../templates", __FILE__)
+    TEMPLATES_PATH = File.expand_path("../../templates", __FILE__)
 
     def self.update_gemfile(config)
       new.update_gemfile(config)
@@ -19,7 +19,11 @@ module RailsNewApp
     end
 
     def apply_template(template)
-      system("rails app:template LOCATION=#{PATH}/#{template}.rb")
+      system("rails app:template LOCATION=#{TEMPLATES_PATH}/#{template}.rb")
+    end
+
+    def log(string)
+      puts(string) unless ENV["env"] == "test"
     end
   end
 end

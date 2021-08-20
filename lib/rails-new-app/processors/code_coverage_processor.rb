@@ -11,7 +11,7 @@ module RailsNewApp
     def configure(config)
       return if config[:test_runner][:key] == ""
 
-      puts "Processing Code Coverage config"
+      log "Processing Code Coverage config"
       case config[:code_coverage][:key]
       when "simplecov" then apply_template "simplecov-#{config[:test_runner][:key]}-config"
       end

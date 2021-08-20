@@ -7,7 +7,7 @@ module RailsNewApp
     end
 
     def configure(config)
-      puts "Processing test runner config"
+      log "Processing test runner config"
       case config[:test_runner][:key]
       when "rspec" then apply_template "rspec-rails-config"
       end

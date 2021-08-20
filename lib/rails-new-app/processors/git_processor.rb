@@ -2,7 +2,7 @@ module RailsNewApp
   class GitProcessor < Processor
     def configure(config)
       if config[:git].strip != ""
-        puts "Adding git remote"
+        log "Adding git remote"
         system("git remote add origin #{config[:git]}")
       end
     end

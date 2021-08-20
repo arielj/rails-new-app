@@ -16,6 +16,7 @@ module RailsNewApp
     {option: "8", page: 1, class: PaginationScreen},
     {option: "1", page: 2, class: AuthScreen},
     {option: "2", page: 2, class: GitScreen},
+    {option: "3", page: 2, class: ContinuousIntegrationScreen},
     {option: nil, class: CodeCoverageScreen},
     {option: nil, class: TestFactoryScreen},
     {option: nil, class: TestFakeDataScreen},
@@ -154,7 +155,8 @@ module RailsNewApp
         PaginationProcessor,
         AuthorizationProcessor,
         AuthenticationProcessor,
-        GitProcessor
+        GitProcessor,
+        ContinuousIntegrationProcessor
       ].each { |p| p.configure(config) }
     end
 
@@ -211,6 +213,7 @@ module RailsNewApp
     end
 
     def initial_commit
+      run_cmnd("git checkout -b main")
       run_cmnd("git add .")
       run_cmnd("git commit -a -m 'Initial commit'")
     end

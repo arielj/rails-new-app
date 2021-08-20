@@ -1,0 +1,25 @@
+name: CI
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v1
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: <RUBY_VERSION>
+          bundler-cache: true
+      - name: Yarn
+        uses: bahmutov/npm-install@v1
+        with:
+          install-command: yarn --frozen-lockfile --silent
+<TEST_STEPS>

@@ -8,7 +8,7 @@ module RailsNewApp
     end
 
     def configure(config)
-      puts "Processing Authorization config"
+      log "Processing Authorization config"
       case config[:authorization][:key]
       when "pundit" then apply_template "pundit-config"
       when "cancancan" then apply_template "cancancan-config"
