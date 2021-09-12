@@ -11,7 +11,7 @@ describe "Rails command" do
       @runner.config[:database] = {key: db, in_rails_new: true}
       cmnd = @runner.build_rails_new_command
 
-      assert_equal "rails new --database=#{db} TestApp", cmnd
+      assert_equal "rails new --no-rc --database=#{db} TestApp", cmnd
     end
   end
 
@@ -20,18 +20,18 @@ describe "Rails command" do
       @runner.config[:test_runner] = {key: option}
       cmnd = @runner.build_rails_new_command
 
-      assert_equal "rails new --skip-test TestApp", cmnd
+      assert_equal "rails new --no-rc --skip-test TestApp", cmnd
     end
 
     @runner.config[:test_runner] = {key: "minitest"}
     cmnd = @runner.build_rails_new_command
 
-    assert_equal "rails new TestApp", cmnd
+    assert_equal "rails new --no-rc TestApp", cmnd
   end
 
   it "calls the rails new command at the end" do
     fake = Minitest::Mock.new
-    fake.expect :call, nil, ["rails new TestApp"]
+    fake.expect :call, nil, ["rails new --no-rc TestApp"]
     @runner.stub :run_cmnd, fake do
       capture_io do
         @runner.rails_new

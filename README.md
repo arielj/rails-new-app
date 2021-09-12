@@ -6,11 +6,12 @@ Command-line tool to assist in the creation of new Rails 6 apps
 
 - **Ruby (make sure `ruby -v` shows your desired version before running this)**
 - **Rails (make sure `rails -v` shows your desired version before running this)**
+- **Node.js (version 14.X is recommended)**
 - Git (the `rails new` command initializes a git repo)
 - Any tool related to the gems you want to use (Redis, PostgreSQL, etc)
 - C dev tools if you plan to use any gem that requires compilation of native extensions
 
-> This is currently tested only on Linux
+> This is currently tested only on Linux and Mac
 
 ## Installation:
 
@@ -50,14 +51,15 @@ It will use the current default Rails version, so you should install the version
 - support `rails new` flags configuration
 - research requirements
 - support a `rails-new-app-defaults` file at the HOME dir to set default options if empty answers
+- show an option to NOT ignore or set an RC file, --no-rc is set by default
 
 #### Ideas for other tools:
 
-- dotenv/figaro
+- dotenv/figaro/dotenv_validator?
 - resque/sideqik/suckerpunch/other?
 - CSS framework? bootstrap/tailwind/material/spectre/bulma (this affects the form builders processor)
-- CI config? github actions / travis / circleci / bitbucket / gitlab / others
-- carrierwave/paperclip/dragonfly?
+- CI config? ~github actions~ / travis / circleci / bitbucket / gitlab / others
+- carrierwave/paperclip/dragonfly/install activestorage?
 - js linter? None/ESlint/StandardJS
 - exception_notification / airbreak / other reporting tools
 - redis?

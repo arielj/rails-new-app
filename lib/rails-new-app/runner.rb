@@ -195,6 +195,7 @@ module RailsNewApp
       ["rails"].tap do |ar|
         # new command
         ar << "new"
+        ar << "--no-rc"
         # use desired database
         ar << "--database=#{config[:database][:key]}" if config[:database][:in_rails_new] && !config[:database][:is_default]
         # ignore test if not minitest
